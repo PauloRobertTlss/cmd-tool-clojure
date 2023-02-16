@@ -2,7 +2,7 @@
   (:require [conversor.cambista :refer [obter-cotacao]]
             [conversor.post-code :refer [obter-address]]))
 
-(def aliasTools {
+(def cmdAllowed {
             "convert" obter-cotacao
             "cep" obter-address
             })
@@ -10,7 +10,7 @@
 (defn -main
   [& args]
   (let [tool (first args)]
-     (if (contains? aliasTools tool)
-        ((get aliasTools tool) (rest args))
+     (if (contains? cmdAllowed tool)
+        ((get cmdAllowed tool) (rest args))
         (println "Tool not found. =/")
     )))
